@@ -1,0 +1,12 @@
+﻿/* Styles used by the TinyMCE editor */
+p {
+  EditMenuName: Paragraph;
+}
+
+h2 {
+  EditMenuName: Header 2;
+}
+
+h3 {
+  EditMenuName: Header 3;
+}

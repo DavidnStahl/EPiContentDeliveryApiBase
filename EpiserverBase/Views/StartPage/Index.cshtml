@@ -1,0 +1,7 @@
+﻿@using EPiServer.Core
+@using EPiServer.Web.Mvc.Html
+@model PageViewModel<EpiserverBase.Models.Pages.StartPage>
+
+@Html.PropertyFor(m => m.CurrentPage.WelcomeMessage)
+
+@Html.PropertyFor(m => m.CurrentPage.MainBody)

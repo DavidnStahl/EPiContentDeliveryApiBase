@@ -1,0 +1,48 @@
+﻿@using EPiServer.Web
+@using EPiServer.Web.Mvc.Html
+@using EpiserverBase.Helpers
+@model IPageViewModel<SitePageData>
+<nav class="nav-main">
+    <h2 class="visually-hidden">Main Navigation</h2>
+
+    @helper MainMenu()
+    {
+        @Html.MenuList(
+            SiteDefinition.Current.StartPage,
+            MenuItemTemplate
+        )
+    }
+
+    @helper MenuItemTemplate(HtmlHelpers.MenuItem item)
+    {
+        <li class="@(item.Selected || item.AncestorOfSelected
+            ? "selected"
+            : null)">
+            @if (item.Selected)
+            {
+                @Html.PageLink(item.Page, null, new
+                {
+                    aria_current = "page"
+                })
+            }
+            else
+            {
+                @Html.PageLink(item.Page)
+            }
+
+            @if (item.HasChildren.Value)
+            {
+                <ul class="submenu">
+                    @Html.MenuList(
+                        item.Page.ContentLink,
+                        MenuItemTemplate
+                    )
+                </ul>
+            }
+        </li>
+    }
+
+    <ul class="menu-horizontal">
+        @MainMenu()
+    </ul>
+</nav>

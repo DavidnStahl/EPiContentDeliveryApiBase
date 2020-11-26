@@ -1,0 +1,12 @@
+﻿@using EpiserverBase.Business
+
+@model EPiServer.Core.ContentReference
+
+@if (Model != null)
+{
+    string sizeSuffix = (string.IsNullOrEmpty(ViewBag.Size))
+        ? ""
+        : "/" + ViewBag.Size;
+
+    <img src="@(Url.ContentUrl(Model) + sizeSuffix)" alt="@(Model.ImageAltText() ?? string.Empty)" />
+}

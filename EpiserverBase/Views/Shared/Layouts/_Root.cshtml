@@ -1,0 +1,24 @@
+﻿@using EPiServer.Web.Mvc.Html
+@using System.Web.Optimization
+@model IPageViewModel<SitePageData>
+<!DOCTYPE html>
+<html lang="@Model.CurrentPage.Language">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@Model.CurrentPage.MetaTitle</title>
+    <meta name="keywords" content="@string.Join(",", Model.CurrentPage.MetaKeywords)" />
+    <meta name="description" content="@Model.CurrentPage.MetaDescription" />
+    <link rel="shortcut icon" href="@Url.Content("~/favicon.ico")" type="image/x-icon" />
+    @Html.CanonicalLink()
+    @Html.AlternateLinks()
+    @* See ~/Business/Initialization/BundleConfig.cs *@
+    @Styles.Render("~/bundles/css")
+    @Scripts.Render("~/bundles/js")
+</head>
+<body>
+    <main>
+        @RenderBody()
+    </main>
+</body>
+</html>

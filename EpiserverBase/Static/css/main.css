@@ -1,0 +1,73 @@
+﻿/* ==========================================================================
+   General Styles
+   ========================================================================== */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+.visually-hidden {
+  position: absolute;
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Main Menu
+   ========================================================================== */
+/* Remove default <ul> styles */
+.menu-horizontal {
+  padding-left: 0;
+  list-style: none;
+  background-color: #eee;
+}
+
+  /* Submenus need to be positioned relative to their parent element */
+  .menu-horizontal > li {
+    position: relative;
+  }
+
+  /* Add some padding around each menu link, and prevent wrapping */
+  .menu-horizontal a {
+    display: inline-block;
+    padding: .5rem;
+    white-space: nowrap;
+  }
+
+/* Hide submenu and remove default <ul> styles */
+.submenu {
+  display: none;
+  padding-left: 0;
+  list-style: none;
+  background-color: #ddd;
+}
+
+/* Show submenu when aria-expanded is true */
+[aria-expanded="true"] + .submenu {
+  display: block;
+}
+
+@media (min-width: 640px) {
+  /* Switch to flexbox layout */
+  .menu-horizontal {
+    display: flex;
+  }
+
+  /* Position submenu below its menu item */
+  .submenu {
+    position: absolute;
+  }
+
+  /* Show submenu on menu item hover */
+  li:hover .submenu {
+    display: block;
+  }
+}

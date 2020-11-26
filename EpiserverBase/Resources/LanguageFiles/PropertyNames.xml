@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<languages>
+  <language name="English" id="en">
+    <contenttypes>
+      <icontentdata>
+        <properties>
+          <!-- SitePageData -->
+          <metadescription>
+            <caption>Description</caption>
+            <help>Used as the meta description value.</help>
+          </metadescription>
+          <metakeywords>
+            <caption>Keywords</caption>
+            <help>Used as the meta keywords value.</help>
+          </metakeywords>
+          <metatitle>
+            <caption>Title</caption>
+            <help>Used as the value of the &lt;title&gt; tag.</help>
+          </metatitle>
+
+          <!-- Media Types-->
+          <alttext>
+            <caption>Alternate Text</caption>
+            <help>Text to help describe media to users that cannot see it.</help>
+          </alttext>
+        </properties>
+      </icontentdata>
+    </contenttypes>
+  </language>
+</languages>

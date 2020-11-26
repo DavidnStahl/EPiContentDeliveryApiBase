@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<languages>
+  <language name="English" id="en">
+    <contenttypes>
+      <!-- Pages -->
+      <containerpage>
+        <name>Container Page</name>
+        <description>Acts as a folder and helps organize pages.</description>
+      </containerpage>
+
+      <sitesettingspage>
+        <name>Settings Page</name>
+        <description>A page for managing global site settings.</description>
+        <properties>
+          <logoimage>
+            <caption>Logo</caption>
+            <help>The website logo.</help>
+          </logoimage>
+        </properties>
+      </sitesettingspage>
+
+      <startpage>
+        <name>Start Page</name>
+        <description>The home page of the website.</description>
+        <properties>
+          <mainbody>
+            <caption>Main Body</caption>
+            <help>The main body will be shown in the main content area of the page</help>
+          </mainbody>
+        </properties>
+      </startpage>
+    </contenttypes>
+  </language>
+</languages>

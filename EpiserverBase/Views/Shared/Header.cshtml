@@ -1,0 +1,15 @@
+﻿@using EPiServer.Core
+@using EPiServer.Web.Mvc.Html
+@model IPageViewModel<SitePageData>
+<header>
+    <h1>
+        @if (Model.Settings != null && Model.Settings.LogoImage != null)
+        {
+            @Html.DisplayFor(m => m.Settings.LogoImage, new { Size = "Thumbnail" })
+        }
+        else
+        {
+            <text>Episerver Base</text>
+        }
+    </h1>
+</header>
