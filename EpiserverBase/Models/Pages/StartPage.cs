@@ -1,10 +1,9 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
-using EPiServer.SpecializedProperties;
-using EPiServer.Web;
+using EPiServer.Shell.ObjectEditing;
+using EpiserverBase.Business.EditorDescriptors.ContentSelection;
 
 namespace EpiserverBase.Models.Pages
 {
@@ -16,6 +15,13 @@ namespace EpiserverBase.Models.Pages
         ExcludeOn = new[] { typeof(StartPage)})]
     public class StartPage : SitePageData
     {
+        [CultureSpecific]
+        [Display(
+            GroupName = SystemTabNames.Content,
+            Order = 5)]
+        [SelectOne(SelectionFactoryType = typeof(ContentSelectionFactory<SiteSettingsPage>))]
+        public virtual PageReference Settings { get; set; }
+
         [Display(
             Name = "Welcome message",
             GroupName = SystemTabNames.Content,

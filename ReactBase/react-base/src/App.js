@@ -1,16 +1,32 @@
 import './App.css';
-import EpiserverHeaderComponent from './Components/EpiserverHeaderComponent'
+//import { useSelector, useDispatch } from 'react-redux'
+//import {increment} from './actions';
+
+
+//import EpiserverFooterBlockComponent from './components/EpiserverFooterBlockComponent';
+import EpiserverHeaderBlockComponent from './components/EpiserverHeaderBlockComponent';
+//import EpiserverPageComponent from './components/EpiserverPageComponent'
 
 
 function App() {
-  const epiUrl = "http://localhost:64473/";
-  const epiContentID = "5"
+
+  
+  //const headerBlockModel = useSelector(state => state.headerBlockModel);
+  //const pageModel = useSelector(state => state.pageModel);
+  //const footerBlockModel = useSelector(state => state.footerBlockModel);
+
+  //const counter = useSelector(state => state.counter)
+  //const disPatch = useDispatch();
   return (
     <div className="App">
-      <header className="App-header">
-        <EpiserverHeaderComponent url={epiUrl} contentID={epiContentID} 
-        />
-      </header>
+      {/*<h1>Counter {counter}</h1>
+      <button onClick={() => disPatch(increment())}>+</button>
+      <button>-</button>*/}
+        <EpiserverHeaderBlockComponent/>
+        {/*<EpiserverPageComponent/>
+        <EpiserverFooterBlockComponent/>*/}
+
+
     </div>
   );
 }

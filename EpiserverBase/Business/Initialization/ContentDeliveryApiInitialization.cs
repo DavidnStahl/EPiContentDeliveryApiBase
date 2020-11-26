@@ -14,7 +14,8 @@ namespace EpiserverBase.Business.Initialization
         {
             context.Services.Configure<ContentApiConfiguration>(config =>
             {
-                config.Default().SetMinimumRoles(string.Empty);
+                config.Default().SetMinimumRoles(string.Empty)
+                .SetSiteDefinitionApiEnabled(true);
             });
         }
 
