@@ -22,17 +22,18 @@ namespace EpiserverBase.Services
         }
         public List<PageDto> GetAllPages()
         {
-            var startPage = EPiServer.ServiceLocation.ServiceLocator.Current
+            var pages = new List<PageData>
+            {
+                EPiServer.ServiceLocation.ServiceLocator.Current
                 .GetInstance<IContentLoader>()
                 .GetChildren<PageData>(SiteDefinition.Current.RootPage)
-                .FirstOrDefault(r => r.Name == "Start");
+                .FirstOrDefault(r => r.Name == "Start")
+            };
 
-            var pages = EPiServer.ServiceLocation.ServiceLocator.Current
+            pages.AddRange(EPiServer.ServiceLocation.ServiceLocator.Current
                 .GetInstance<IContentLoader>()
                 .GetChildren<PageData>(SiteDefinition.Current.StartPage).Where(p => p.VisibleInMenu == true)
-                .ToList();
-
-            pages.Add(startPage);
+                .ToList());
 
             return _mapper.Map<List<PageDto>>(pages);
         }

@@ -3,11 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createStore} from 'redux';
-import allReducer from './reducers';
 import {Provider} from 'react-redux'
+import store from './redux/store'
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
+import $ from 'jquery';
+import Popper from 'popper.js';
+import '../node_modules/bootstrap/dist/js/bootstrap.bundle.min';
+import './App.css'
 
-const store = createStore(allReducer);
+
+
 
 ReactDOM.render(
     <Provider store={store}>
