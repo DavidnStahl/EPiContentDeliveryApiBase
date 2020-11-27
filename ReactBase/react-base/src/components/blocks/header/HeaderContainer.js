@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { fetchHeader} from '../redux'
+import { fetchHeader} from '../../../redux'
 import HeaderItem from './HeaderItem'
 
 function HeaderContainer({headerData, fetchHeader}) {
@@ -17,7 +17,7 @@ function HeaderContainer({headerData, fetchHeader}) {
     ) : headerData.error ? (
        <h2>error</h2> 
     ) : (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-lg navbar-dark header-navbar">
             <span></span>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>

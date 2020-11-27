@@ -11,6 +11,11 @@ namespace EpiserverBase.Business.Initialization
     [ModuleDependency(typeof(FrameworkInitialization))]
     public class WebApiConfig : IInitializableModule
     {
+        public static void Register(HttpConfiguration config)
+        {
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
+        }
 
         public void Initialize(InitializationEngine context)
         {

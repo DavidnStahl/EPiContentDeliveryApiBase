@@ -1,10 +1,11 @@
 
-
 import {
     FETCH_HEADER_REQUEST,
     FETCH_HEADER_SUCCESS,
     FETCH_HEADER_FAILURE}
     from './headerTypes'
+
+
 
 
 export const fetchHeaderRequest = () => {
@@ -31,14 +32,13 @@ export const fetchHeader  = () => {
 
     return async (dispatch) => {
         dispatch(fetchHeaderRequest)        
-        var header = await fetch('http://localhost:64473/api/navigation')
+        const header = await fetch('http://localhost:64473/api/navigation')
         .then( response => {
           return response.json()
         })
         .then( json => {
             return json;
         })
-          console.log(header)
           dispatch(fetchHeaderSuccess(header))
         }
           

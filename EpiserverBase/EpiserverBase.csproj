@@ -339,6 +339,7 @@
     <Compile Include="Global.cs" />
     <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Infrastructure\AutoMapperConfig.cs" />
+    <Compile Include="Infrastructure\ServiceConfigurationContextExtension.cs" />
     <Compile Include="Models\Blocks\DescriptionBlock.cs" />
     <Compile Include="Models\Blocks\FooterBlock.cs" />
     <Compile Include="Models\Blocks\HeaderBlock.cs" />

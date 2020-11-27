@@ -75,13 +75,22 @@
   
   body {
     background-color: rgb(240, 240, 243);
+    min-height: 100vh;
+    height: 100%;
+    padding-bottom: 70px;
+    margin:0;
     font-weight:600;
     text-align:center !important;
     color: white;
   }
+
+
+
+
+  
   
   nav {
-    background: none !important;
+    background-color: #3f51b5;
     text-transform:uppercase;
     li {
       margin-left: 3em;
