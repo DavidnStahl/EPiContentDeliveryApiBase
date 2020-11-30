@@ -15,9 +15,7 @@ function FooterContainer({footerData, fetchFooter}) {
     ) : (
         <div className="footer">
            <p>{footerData.footer.Text}</p>
-        </div>
-        
-        
+        </div> 
     )
 }
 

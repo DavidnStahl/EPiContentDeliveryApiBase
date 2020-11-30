@@ -1,3 +1,4 @@
+import {saveDataToCache,getCache} from '../../../cache/index'
 import {
     FETCH_FOOTER_REQUEST,
     FETCH_FOOTER_SUCCESS,
@@ -25,17 +26,20 @@ export const fetchFooterFailure = error => {
 }
 
 export const fetchFooter  = () => {
-
     return async (dispatch) => {
-        dispatch(fetchFooterRequest)        
-        var footer = await fetch('http://localhost:64473/api/footer')
-        .then( response => {
-            return response.json()
-        })
-        .then( json => {
-            return json;
-        })
-            dispatch(fetchFooterSuccess(footer))
-        }
-            
+        //const cache = getCache("Footer");
+        //if(cache === null){           
+            dispatch(fetchFooterRequest)        
+            var footer = await fetch('http://localhost:64473/api/footer')
+            .then( response => {
+                return response.json()
+            })
+            .then( json => {
+                return json;
+            })
+            //saveDataToCache("Footer",footer)
+            dispatch(fetchFooterSuccess(footer))           
+        //}       
+        //dispatch(fetchFooterSuccess(cache))
+    }                                 
 }

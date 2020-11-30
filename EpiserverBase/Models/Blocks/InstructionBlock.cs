@@ -6,10 +6,9 @@ using EPiServer.DataAnnotations;
 
 namespace EpiserverBase.Models.Blocks
 {
-    [ContentType(DisplayName = "InformationBlock", GUID = "a1df7267-e614-4b2c-a856-fcff310a7eec", Description = "")]
-    public class InformationBlock : SiteBlockData
+    [ContentType(DisplayName = "InstructionBlock", GUID = "447e7783-9616-4da4-b26c-6a5d5757b172", Description = "")]
+    public class InstructionBlock : BlockData
     {
-        
         [CultureSpecific]
         [Display(
             Name = "Title",
@@ -25,6 +24,5 @@ namespace EpiserverBase.Models.Blocks
             GroupName = SystemTabNames.Content,
             Order = 20)]
         public virtual XhtmlString MainBody { get; set; }
-
     }
 }

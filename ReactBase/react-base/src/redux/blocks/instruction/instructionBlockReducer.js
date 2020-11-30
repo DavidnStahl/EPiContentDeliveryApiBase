@@ -1,32 +1,32 @@
 import {
-    FETCH_HEADER_REQUEST,
-    FETCH_HEADER_SUCCESS,
-    FETCH_HEADER_FAILURE}
-    from './headerTypes'
+    FETCH_INSTRUCTIONBLOCK_REQUEST,
+    FETCH_INSTRUCTIONBLOCK_SUCCESS,
+    FETCH_INSTRUCTIONBLOCK_FAILURE}
+    from './instructionBlockTypes'
 
 const initialState = {
     loading: false,
-    header: false,
+    instructionBlock: false,
     error: ''
 }
 
 const reducer = (state = initialState, action) => {
     switch(action.type) {
-        case FETCH_HEADER_REQUEST:
+        case FETCH_INSTRUCTIONBLOCK_REQUEST:
             return {
                 ...state,
                 loading: true
             }
-        case FETCH_HEADER_SUCCESS:
+        case FETCH_INSTRUCTIONBLOCK_SUCCESS:
             return {
                 loading: false,
-                header: action.payload,
+                instructionBlock: action.payload,
                 error: ''
             }
-        case FETCH_HEADER_FAILURE:
+        case FETCH_INSTRUCTIONBLOCK_FAILURE:
             return {
                 loading: false,
-                header: initialState,
+                instructionBlock: initialState,
                 error: action.payload
             }
         default: return state

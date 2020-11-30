@@ -1,3 +1,4 @@
+import {saveDataToCache,getCache} from '../../../cache/index'
 import {
     FETCH_STARTPAGE_REQUEST,
     FETCH_STARTPAGE_SUCCESS,
@@ -25,36 +26,26 @@ export const fetchStartPageFailure = error => {
     }
 }
 
-
-
 export const fetchStartPage  = () => {
-
-    return async (dispatch, getState) => {
-
-        dispatch(fetchStartPageRequest)
-        var state = getState()
-        console.log(state)
-        const startPageID = await fetch('http://localhost:64473/api/navigation')
-        .then( response => {
-            return response.json()
-          })
-          .then( json => {
-              return json[0].ContentGuid.toString();
-              
-          })
-        
-        const startPage = await fetch(`http://localhost:64473//api/episerver/v2.0/content/${startPageID}`,{
-            headers: {
-                'Accept-language': ''
-            }
-        })
-        .then( response => {
-          return response.json()
-        })
-        .then( json => {
-            return json;
-        })
-          dispatch(fetchStartPageSuccess(startPage))
+    return async (dispatch) => {
+        const cache = getCache("StartPage");
+        if(cache === null){
+            dispatch(fetchStartPageRequest)  
+            const startPage = await fetch(`http://localhost:64473//api/episerver/v2.0/content/${5}`,{
+                headers: {
+                    'Accept-language': ''
+                }
+            })
+            .then( response => {
+                return response.json()
+            })
+            .then( json => {
+                return json;
+            })
+            saveDataToCache("StartPage",startPage);
+            dispatch(fetchStartPageSuccess(startPage))
+        }
+        dispatch(fetchStartPageSuccess(cache))  
     }
           
 }

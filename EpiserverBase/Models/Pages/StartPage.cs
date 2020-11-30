@@ -25,12 +25,12 @@ namespace EpiserverBase.Models.Pages
 
 
         [Display(
-            Name = "Description",
+            Name = "Information",
             GroupName = SystemTabNames.Content,
             Order = 10)]
         [CultureSpecific]
-        [AllowedTypes(new[] { typeof(DescriptionBlock) })]
-        public virtual ContentArea Description  { get; set; }
+        [AllowedTypes(new[] { typeof(InformationBlock), typeof(DescriptionBlock) })]
+        public virtual ContentArea InformationContentArea  { get; set; }
 
 
     }

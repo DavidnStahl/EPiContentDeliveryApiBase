@@ -7,10 +7,10 @@ function HeaderContainer({headerData, fetchHeader}) {
     useEffect(() => {        
         fetchHeader()
      }, [])
-
-     const headerItems = headerData.header.map(header => 
+    
+     const headerItems = headerData.header !== false? headerData.header.map(header => 
      <HeaderItem key={header.ContentGuid.toString()} header={header}/>
-     );
+     ) : <h2>loading</h2>
 
     return headerData.loading ? (
         <h2>Loading</h2>

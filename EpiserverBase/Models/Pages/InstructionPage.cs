@@ -3,6 +3,7 @@ using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Shell.ObjectEditing;
 using EpiserverBase.Business.EditorDescriptors.ContentSelection;
+using EpiserverBase.Models.Blocks;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -24,17 +25,11 @@ namespace EpiserverBase.Models.Pages
         public virtual PageReference Settings { get; set; }
 
         [Display(
-            Name = "Title",
+            Name = "Information",
             GroupName = SystemTabNames.Content,
             Order = 10)]
         [CultureSpecific]
-        public virtual string Title { get; set; }
-
-        [Display(
-            Name = "Main body",
-            GroupName = SystemTabNames.Content,
-            Order = 20)]
-        [CultureSpecific]
-        public virtual XhtmlString MainBody { get; set; }
+        [AllowedTypes(new[] { typeof(InstructionBlock) })]
+        public virtual ContentArea InstructionContentArea { get; set; }
     }
 }

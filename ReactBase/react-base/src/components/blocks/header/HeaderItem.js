@@ -1,11 +1,15 @@
 import React from 'react'
+import {NavLink} from 'react-router-dom'
 
 function headerItem(props) {
-
+    
+    const navLinkRef = () =>{        
+            return `/${props.header.Name}`
+    } 
 
     return (
         <li className="nav-item active">
-                    <a className="nav-link hoverable" href="#Home">{props.header.Name}</a>
+        <NavLink className="nav-link hoverable" to={navLinkRef} >{props.header.Name}</NavLink>
         </li>
     )
 }

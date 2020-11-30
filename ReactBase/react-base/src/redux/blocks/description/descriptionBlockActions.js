@@ -1,3 +1,4 @@
+import {saveDataToCache,getCache} from '../../../cache/index'
 import {
     FETCH_DESCRIPTIONBLOCK_REQUEST,
     FETCH_DESCRIPTIONBLOCK_SUCCESS,
@@ -25,24 +26,24 @@ export const fetchDescriptionBlockFailure = error => {
 }
 
 export const fetchDescriptionBlock  = () => {
-
-    return async (dispatch, getState) => {
-
-        dispatch(fetchDescriptionBlockRequest)
-        const state = getState();  
-        var descriptionBlock = await fetch(`http://localhost:64473//api/episerver/v2.0/content/${state.startPage.startPage.description.value[0].contentLink.guidValue}`,{
-            headers: {
-                'Accept-language': ''
-            }
-        })
-        .then( response => {           
-            return response.json()
-        })
-        .then( json => {
-
-            return json;
-        })
+    return async (dispatch) => {
+        //const cache = getCache("DescriptionBlock")
+        //if(cache === null){
+            dispatch(fetchDescriptionBlockRequest)
+            var descriptionBlock = await fetch(`http://localhost:64473//api/episerver/v2.0/content/${13}`,{
+                headers: {
+                    'Accept-language': ''
+                }
+            })
+            .then( response => {           
+                return response.json()
+            })
+            .then( json => {
+                return json;
+            })
+            //saveDataToCache("DescriptionBlock",descriptionBlock)
             dispatch(fetchDescriptionBlockSuccess(descriptionBlock))
-        }
-            
+        //}
+        //dispatch(fetchDescriptionBlockSuccess(cache))
+    }            
 }

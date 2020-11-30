@@ -10,13 +10,16 @@ import $ from 'jquery';
 import Popper from 'popper.js';
 import '../node_modules/bootstrap/dist/js/bootstrap.bundle.min';
 import './App.css'
+import {BrowserRouter} from 'react-router-dom'
 
 
 
 
 ReactDOM.render(
     <Provider store={store}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </Provider>
     ,   
     document.getElementById('root')

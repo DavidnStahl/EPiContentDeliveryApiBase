@@ -326,7 +326,6 @@
     <Compile Include="Business\ServiceLocatorDependencyResolver.cs" />
     <Compile Include="Business\StructureMapDependencyResolver.cs" />
     <Compile Include="Business\StructureMapDependencyScope.cs" />
-    <Compile Include="Business\UIDescriptors\ContainerPageUIDescriptor.cs" />
     <Compile Include="Business\UIDescriptors\EpiserverDefaultContentIcon\EpiserverDefaultContentIcons.cs" />
     <Compile Include="Business\UIDescriptors\SiteSettingsPageUIDescriptor.cs" />
     <Compile Include="Controllers\Api\FooterApiController.cs" />
@@ -344,14 +343,13 @@
     <Compile Include="Models\Blocks\FooterBlock.cs" />
     <Compile Include="Models\Blocks\HeaderBlock.cs" />
     <Compile Include="Models\Blocks\InformationBlock.cs" />
+    <Compile Include="Models\Blocks\InstructionBlock.cs" />
     <Compile Include="Models\Blocks\SiteBlockData.cs" />
     <Compile Include="Models\Dtos\FooterDto.cs" />
     <Compile Include="Models\Dtos\PageDto.cs" />
     <Compile Include="Models\Media\GenericMedia.cs" />
     <Compile Include="Models\Media\ImageFile.cs" />
     <Compile Include="Models\Media\VideoFile.cs" />
-    <Compile Include="Models\Pages\ContactPage.cs" />
-    <Compile Include="Models\Pages\ContainerPage.cs" />
     <Compile Include="Models\Pages\InstructionPage.cs" />
     <Compile Include="Models\Pages\SitePageData.cs" />
     <Compile Include="Models\Pages\SiteSettingsPage.cs" />

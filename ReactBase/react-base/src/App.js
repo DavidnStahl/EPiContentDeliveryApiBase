@@ -1,6 +1,6 @@
 import HeaderContainer from './components/blocks/header/HeaderContainer'
 import FooterContainer from './components/blocks/footer/FooterContainer'
-import StartPageContainer from './components/pages/start/StartPageContainer'
+import Page from './components/Page'
 
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
     <HeaderContainer/>
-    <StartPageContainer/>
+    <Page/>
     <FooterContainer/>
     
 </div>
