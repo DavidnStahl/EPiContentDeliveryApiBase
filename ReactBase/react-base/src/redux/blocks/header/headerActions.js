@@ -30,7 +30,7 @@ export const fetchHeaderFailure = error => {
 
 export const fetchHeader  = () => {
 
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
         dispatch(fetchHeaderRequest)        
         const header = await fetch('http://localhost:64473/api/navigation')
         .then( response => {
@@ -38,8 +38,9 @@ export const fetchHeader  = () => {
         })
         .then( json => {
             return json;
-        })
+        })    
           dispatch(fetchHeaderSuccess(header))
+
         }
           
 }

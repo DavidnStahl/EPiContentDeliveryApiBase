@@ -24,7 +24,7 @@ namespace EpiserverBase.Models.Blocks
             Description = "",
             GroupName = SystemTabNames.Content,
             Order = 20)]
-        public virtual string MainBody { get; set; }
+        public virtual XhtmlString MainBody { get; set; }
 
     }
 }

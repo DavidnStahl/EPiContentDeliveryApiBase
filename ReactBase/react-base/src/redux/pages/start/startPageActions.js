@@ -29,20 +29,21 @@ export const fetchStartPageFailure = error => {
 
 export const fetchStartPage  = () => {
 
- 
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
+
         dispatch(fetchStartPageRequest)
+        var state = getState()
+        console.log(state)
         const startPageID = await fetch('http://localhost:64473/api/navigation')
         .then( response => {
             return response.json()
           })
           .then( json => {
               return json[0].ContentGuid.toString();
+              
           })
         
-        
-
-        const startPage = await fetch(`http://localhost:64473//api/episerver/v2.0/content/d3800289-fafb-42e9-8381-e05f45bdd911`,{
+        const startPage = await fetch(`http://localhost:64473//api/episerver/v2.0/content/${startPageID}`,{
             headers: {
                 'Accept-language': ''
             }
@@ -51,10 +52,9 @@ export const fetchStartPage  = () => {
           return response.json()
         })
         .then( json => {
-            console.log(json)
             return json;
         })
           dispatch(fetchStartPageSuccess(startPage))
-        }
+    }
           
 }

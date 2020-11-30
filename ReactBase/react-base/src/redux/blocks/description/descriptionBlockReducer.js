@@ -1,32 +1,32 @@
 import {
-    FETCH_STARTPAGE_REQUEST,
-    FETCH_STARTPAGE_SUCCESS,
-    FETCH_STARTPAGE_FAILURE}
-    from './startPageTypes'
+    FETCH_DESCRIPTIONBLOCK_REQUEST,
+    FETCH_DESCRIPTIONBLOCK_SUCCESS,
+    FETCH_DESCRIPTIONBLOCK_FAILURE}
+    from './descriptionBlockTypes'
 
 const initialState = {
     loading: false,
-    startPage: false,
+    descriptionBlock: false,
     error: ''
 }
 
 const reducer = (state = initialState, action) => {
     switch(action.type) {
-        case FETCH_STARTPAGE_REQUEST:
+        case FETCH_DESCRIPTIONBLOCK_REQUEST:
             return {
                 ...state,
                 loading: true
             }
-        case FETCH_STARTPAGE_SUCCESS:
+        case FETCH_DESCRIPTIONBLOCK_SUCCESS:
             return {
                 loading: false,
-                startPage: action.payload,
+                descriptionBlock: action.payload,
                 error: ''
             }
-        case FETCH_STARTPAGE_FAILURE:
+        case FETCH_DESCRIPTIONBLOCK_FAILURE:
             return {
                 loading: false,
-                startPage: initialState,
+                descriptionBlock: initialState,
                 error: action.payload
             }
         default: return state

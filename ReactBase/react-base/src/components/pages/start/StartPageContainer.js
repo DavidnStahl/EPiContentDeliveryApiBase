@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useEffect} from 'react'
 import { connect } from 'react-redux'
 import { fetchStartPage} from '../../../redux'
+import DescriptionBlockContainer from '../../blocks/description/DescriptionBlockContainer'
 
 function StartPageContainer({startPageData, fetchStartPage}) {
+
     useEffect(() => {        
-        fetchStartPage()
+        fetchStartPage()      
      }, [])
 
 
@@ -12,10 +14,9 @@ function StartPageContainer({startPageData, fetchStartPage}) {
         <h2>Loading</h2>
     ) : startPageData.error ? (
        <h2>error</h2> 
-    ) : ( <div className="text-black-50">
-             <h1 class="mb-4 mt-4">{startPageData.startPage.welcomeMessage.value}</h1> 
-             <div>{startPageData.startPage.mainBody.value.replace(/(<([^>]+)>)/gi, "")}</div>
-         </div> )
+    ) : startPageData.startPage !== false ?( <div className="text-black-50">
+          <DescriptionBlockContainer/>
+         </div> ) : <h2>loading</h2>
 }
 
 const mapStateToProps = state => {    

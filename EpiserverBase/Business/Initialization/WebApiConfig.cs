@@ -21,7 +21,6 @@ namespace EpiserverBase.Business.Initialization
         {
             GlobalConfiguration.Configure(config =>
             {
-                //config.MapHttpAttributeRoutes();
                 var cors = new EnableCorsAttribute("*", "*", "*");
                 config.EnableCors(cors);
 

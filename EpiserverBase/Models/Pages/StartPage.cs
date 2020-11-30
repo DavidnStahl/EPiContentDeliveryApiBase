@@ -4,6 +4,7 @@ using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Shell.ObjectEditing;
 using EpiserverBase.Business.EditorDescriptors.ContentSelection;
+using EpiserverBase.Models.Blocks;
 
 namespace EpiserverBase.Models.Pages
 {
@@ -22,18 +23,15 @@ namespace EpiserverBase.Models.Pages
         [SelectOne(SelectionFactoryType = typeof(ContentSelectionFactory<SiteSettingsPage>))]
         public virtual PageReference Settings { get; set; }
 
+
         [Display(
-            Name = "Welcome message",
+            Name = "Description",
             GroupName = SystemTabNames.Content,
             Order = 10)]
         [CultureSpecific]
-        public virtual string WelcomeMessage { get; set; }
+        [AllowedTypes(new[] { typeof(DescriptionBlock) })]
+        public virtual ContentArea Description  { get; set; }
 
-        [Display(
-            Name = "Main body",
-            GroupName = SystemTabNames.Content,
-            Order = 20)]
-        [CultureSpecific]
-        public virtual XhtmlString MainBody { get; set; }
+
     }
 }
