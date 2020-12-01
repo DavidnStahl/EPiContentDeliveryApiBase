@@ -26,24 +26,28 @@ export const fetchDescriptionBlockFailure = error => {
 }
 
 export const fetchDescriptionBlock  = () => {
-    return async (dispatch) => {
-        //const cache = getCache("DescriptionBlock")
-        //if(cache === null){
-            dispatch(fetchDescriptionBlockRequest)
-            var descriptionBlock = await fetch(`http://localhost:64473//api/episerver/v2.0/content/${13}`,{
+    const cache = getCache("DescriptionBlock");
+    if(cache === null){
+        return async (dispatch) => {
+            dispatch(fetchDescriptionBlockRequest())  
+            const data = await fetch(`http://localhost:64473//api/episerver/v2.0/content/${13}`,{
                 headers: {
                     'Accept-language': ''
                 }
             })
-            .then( response => {           
+            .then( response => {
                 return response.json()
             })
             .then( json => {
                 return json;
             })
-            //saveDataToCache("DescriptionBlock",descriptionBlock)
-            dispatch(fetchDescriptionBlockSuccess(descriptionBlock))
-        //}
-        //dispatch(fetchDescriptionBlockSuccess(cache))
-    }            
+            saveDataToCache("DescriptionBlock",data);
+            dispatch(fetchDescriptionBlockSuccess(data))
+        }
+    }
+    else{
+        return (dispatch) => {
+            dispatch(fetchDescriptionBlockSuccess(cache))
+        }
+    }          
 }

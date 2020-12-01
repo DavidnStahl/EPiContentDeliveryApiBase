@@ -26,20 +26,28 @@ export const fetchFooterFailure = error => {
 }
 
 export const fetchFooter  = () => {
-    return async (dispatch) => {
-        //const cache = getCache("Footer");
-        //if(cache === null){           
-            dispatch(fetchFooterRequest)        
-            var footer = await fetch('http://localhost:64473/api/footer')
+    const cache = getCache("Footer");
+    if(cache === null){
+        return async (dispatch) => {
+            dispatch(fetchFooterRequest())  
+            const data = await fetch(`http://localhost:64473/api/footer`,{
+                headers: {
+                    'Accept-language': ''
+                }
+            })
             .then( response => {
                 return response.json()
             })
             .then( json => {
                 return json;
             })
-            //saveDataToCache("Footer",footer)
-            dispatch(fetchFooterSuccess(footer))           
-        //}       
-        //dispatch(fetchFooterSuccess(cache))
-    }                                 
+            saveDataToCache("Footer",data);
+            dispatch(fetchFooterSuccess(data))
+        }
+    }
+    else{
+        return (dispatch) => {
+            dispatch(fetchFooterSuccess(cache))
+        }
+    }          
 }

@@ -7,6 +7,7 @@ import {
 const initialState = {
     loading: false,
     descriptionBlock: false,
+    //decriptionBlockFetchID: ["13","16","17"],
     error: ''
 }
 

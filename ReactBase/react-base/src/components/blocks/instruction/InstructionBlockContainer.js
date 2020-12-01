@@ -12,7 +12,7 @@ function InstructionBlockContainer({instructionBlockData, fetchInstructionBlock}
     ) : instructionBlockData.error ? (
        <h2>error</h2> 
     ) : instructionBlockData.instructionBlock !== false? (
-        <div className="mt-3">     
+        <div className="mt-3 container text-left">     
            <h1>{instructionBlockData.instructionBlock.title.value}</h1>   
            <div dangerouslySetInnerHTML={{__html: instructionBlockData.instructionBlock.mainBody.value}}>
            </div>

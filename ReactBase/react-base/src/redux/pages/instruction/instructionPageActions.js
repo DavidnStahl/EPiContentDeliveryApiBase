@@ -27,10 +27,41 @@ export const fetchInstructionPageFailure = error => {
 }
 
 export const fetchInstructionPage  = () => {
+    const cache = getCache("InstructionPage");
+    if(cache === null){
+        return async (dispatch) => {
+            dispatch(fetchInstructionPageRequest())  
+            const data = await fetch(`http://localhost:64473//api/episerver/v2.0/content/${9}`,{
+                headers: {
+                    'Accept-language': ''
+                }
+            })
+            .then( response => {
+                return response.json()
+            })
+            .then( json => {
+                return json;
+            })
+            saveDataToCache("InstructionPage",data);
+            dispatch(fetchInstructionPageSuccess(data))
+        }
+    }
+    else{
+        return (dispatch) => {
+            dispatch(fetchInstructionPageSuccess(cache))
+        }
+    }          
+}
+
+
+
+/*export const fetchInstructionPage  = () => {
     return async (dispatch) => {
-        //const cache = getCache("InstructionPage");
-        //if(cache === null){
-            dispatch(fetchInstructionPageRequest)
+        const cache = getCache("InstructionPage");
+        var result = ""
+        if(cache === null){
+            result = fetchInstructionPageRequest();
+            dispatch(result)
             const instructionPage = await fetch(`http://localhost:64473//api/episerver/v2.0/content/${9}`,{
                 headers: {
                     'Accept-language': ''
@@ -42,10 +73,15 @@ export const fetchInstructionPage  = () => {
             .then( json => {
                 return json;
             })
-            //saveDataToCache("InstructionPage",instructionPage)
-            dispatch(fetchInstructionPageSuccess(instructionPage))
-        //}
-        //dispatch(fetchInstructionPageSuccess(cache))                
+            saveDataToCache("InstructionPage",instructionPage)
+            result = fetchInstructionPageSuccess(instructionPage)
+            dispatch(result)
+        }
+        else{
+            result = fetchInstructionPageSuccess(cache)
+            dispatch(result)
+        }
+                        
     }
           
-}
+}*/

@@ -1,6 +1,6 @@
 
 export function getCache(key){
-    var item =  JSON.parse(localStorage.getItem(key))
+    var item =  JSON.parse(sessionStorage.getItem(key))
 
     if(!item)
     {
@@ -11,7 +11,7 @@ export function getCache(key){
 
     if (now.getTime() > item.expire) 
     {
-        localStorage.removeItem(key)
+        sessionStorage.removeItem(key)
         return null
     }
     
@@ -26,7 +26,7 @@ export function saveDataToCache(key, data){
         expire: (now.getTime() + 1000 * 60)
     }
 
-    localStorage.setItem(key,JSON.stringify(item))
+    sessionStorage.setItem(key,JSON.stringify(item))
 }
 
 

@@ -26,21 +26,30 @@ export const fetchHeaderFailure = error => {
 }
 
 export const fetchHeader  = () => {
-    return async (dispatch) => {
-        //const cache = getCache("Header")
-        //if(cache === null){
-            dispatch(fetchHeaderRequest)        
-            const header = await fetch('http://localhost:64473/api/navigation')
+    const cache = getCache("Header");
+    if(cache === null){
+        return async (dispatch) => {
+            dispatch(fetchHeaderRequest())  
+            const data = await fetch(`http://localhost:64473/api/navigation`,{
+                headers: {
+                    'Accept-language': ''
+                }
+            })
             .then( response => {
                 return response.json()
             })
             .then( json => {
                 return json;
             })
-            //saveDataToCache("Header", header)   
-            dispatch(fetchHeaderSuccess(header))
-        //}
-        //dispatch(fetchHeaderSuccess(cache)) 
-    }         
+            saveDataToCache("Header",data);
+            dispatch(fetchHeaderSuccess(data))
+        }
+    }
+    else{
+        return (dispatch) => {
+            dispatch(fetchHeaderSuccess(cache))
+        }
+    }          
 }
+
 

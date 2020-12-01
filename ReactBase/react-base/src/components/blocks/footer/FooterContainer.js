@@ -14,7 +14,7 @@ function FooterContainer({footerData, fetchFooter}) {
        <h2>error</h2> 
     ) : (
         <div className="footer">
-           <p>{footerData.footer.Text}</p>
+           <p className="text-warning">{footerData.footer.Text}</p>
         </div> 
     )
 }

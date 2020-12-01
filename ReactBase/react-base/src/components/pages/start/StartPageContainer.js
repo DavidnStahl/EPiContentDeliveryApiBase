@@ -6,17 +6,21 @@ import InformationBlockContainer from '../../blocks/information/InformationBlock
 
 function StartPageContainer({startPageData, fetchStartPage}) {
 
-    useEffect(() => {        
-        fetchStartPage()      
+
+    useEffect(() => {       
+        fetchStartPage()
      }, [])
+
 
     return startPageData.loading ? (
         <h2>Loading</h2>
     ) : startPageData.error ? (
        <h2>error</h2> 
-    ) : startPageData.startPage !== false ?( <div className="text-black-50">
-          <InformationBlockContainer/>
-          <DescriptionBlockContainer/>
+    ) : startPageData.informationBlock !== false?( <div>
+          <InformationBlockContainer data={startPageData.informationBlock[0]} className="mb-5"/>
+          <DescriptionBlockContainer key={1}  data={startPageData.descriptionBlock[0]} className="mb-5"/>
+          <DescriptionBlockContainer  key={2} data={startPageData.descriptionBlock[1]} className="mb-5"/>
+          <DescriptionBlockContainer  key={3} data={startPageData.descriptionBlock[2]} className="mb-5"/>
          </div> ) : <h2>loading</h2>
 }
 

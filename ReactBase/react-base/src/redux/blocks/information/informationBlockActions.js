@@ -26,6 +26,34 @@ export const fetchInformationBlockFailure = error => {
 }
 
 export const fetchInformationBlock  = () => {
+    const cache = getCache("InformationBlock");
+    if(cache === null){
+        return async (dispatch) => {
+            dispatch(fetchInformationBlockRequest())  
+            const data = await fetch(`http://localhost:64473//api/episerver/v2.0/content/${12}`,{
+                headers: {
+                    'Accept-language': ''
+                }
+            })
+            .then( response => {
+                return response.json()
+            })
+            .then( json => {
+                return json;
+            })
+            saveDataToCache("InformationBlock",data);
+            dispatch(fetchInformationBlockSuccess(data))
+        }
+    }
+    else{
+        return (dispatch) => {
+            dispatch(fetchInformationBlockSuccess(cache))
+        }
+    }          
+}
+
+
+/*export const fetchInformationBlock  = () => {
     return async (dispatch) => {
         //const cache = getCache("InformationBlock")
         //if(cache === null){
@@ -46,7 +74,7 @@ export const fetchInformationBlock  = () => {
         //}
         //dispatch(fetchInformationBlock(cache))
     }       
-}
+}*/
 
             
                 

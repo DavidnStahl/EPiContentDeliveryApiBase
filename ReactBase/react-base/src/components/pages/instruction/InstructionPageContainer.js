@@ -13,7 +13,7 @@ function InstructionPageContainer({instructionPageData, fetchInstructionPage}) {
         <h2>Loading</h2>
     ) : instructionPageData.error ? (
        <h2>error</h2> 
-    ) : instructionPageData.instructionPage !== false ?( <div className="text-black-50">
+    ) : instructionPageData.instructionPage !== false ?( <div>
           <InstructionBlockContainer/>
          </div> ) : <h2>loading</h2>
 }

@@ -72,25 +72,44 @@
     animation-duration: 2s;
   }
   
+  * {
+    box-sizing: border-box;
+   }
+
+   *:before,
+*:after {
+ box-sizing: border-box;
+}
   
   body {
-    background-color: rgb(240, 240, 243);
+    background-image: url("https://coolbackgrounds.io/images/backgrounds/index/aqua-d9b59c89.png");
+    background-repeat: no-repeat;
+    background-size: cover;
     min-height: 100vh;
     height: 100%;
-    padding-bottom: 70px;
+    padding-bottom: 100px;
     margin:0;
     font-weight:600;
     text-align:center !important;
+    position: relative;
     color: white;
+    
   }
 
 
-
+  .footer{
+    padding: 1rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: white;
+  }
 
   
   
   nav {
-    background-color: #3f51b5;
+
     text-transform:uppercase;
     li {
       margin-left: 3em;

@@ -1,37 +1,32 @@
-import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
-import { fetchDescriptionBlock} from '../../../redux'
+import React,{useEffect,useState} from 'react'
 
-function DescriptionBlockContainer({descriptionBlockData, fetchDescriptionBlock}) {
+
+function DescriptionBlockContainer(props) {
+   const [title, setTitle] = useState("loading")
+   const [mainBody, setMainBody] = useState("loading")
+   
     useEffect(() => {
-        fetchDescriptionBlock()           
-     }, [])
+        console.log(props)
+        if(props.data !== false && props.data !== undefined){
+            if(props.data.title.value !== undefined){
+                console.log(props.data)
+                setTitle(props.data.title.value)
+                setMainBody(props.data.mainBody.value)
+            }
+                       
+        }else {
+            setTitle("loading")
+            setMainBody("loading")
+        }        
+     }, [title,mainBody,props])
 
-    return descriptionBlockData.loading ? (
-        <h2>Loading</h2>
-    ) : descriptionBlockData.error ? (
-       <h2>error</h2> 
-    ) : descriptionBlockData.descriptionBlock !== false? (
-        <div className="mt-3">     
-           <h1>{descriptionBlockData.descriptionBlock.title.value}</h1>   
-           <div dangerouslySetInnerHTML={{__html: descriptionBlockData.descriptionBlock.mainBody.value}}>
-           </div>
-        </div>) : (<h2>loading</h2>)
+    return props.data !== false?(
+        <div className="mt-3 text-left container">    
+           <h1 className="mb-5 mt-5">{title}</h1>   
+           {<div dangerouslySetInnerHTML={{__html: mainBody}}>
+           </div>}
+        </div>): <h1>not working</h1>
 }
 
-const mapStateToProps = state => {    
-    return {
-        descriptionBlockData: state.descriptionBlock
-    }
-}
+export default DescriptionBlockContainer
 
-const mapDispatchToProps = dispatch => {
-    return {
-        fetchDescriptionBlock: () => dispatch(fetchDescriptionBlock())
-    }
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps)
-    (DescriptionBlockContainer)

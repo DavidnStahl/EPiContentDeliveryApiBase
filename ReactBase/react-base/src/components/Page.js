@@ -7,6 +7,7 @@ import InstructionPageContainer from './pages/instruction/InstructionPageContain
 const Page = (() => {
     return (
         <Switch>
+            <Route exact path='/' component={StartPageContainer}></Route>
             <Route path='/Start' component={StartPageContainer}></Route>
             <Route path='/Instructions' component={InstructionPageContainer}></Route>
         </Switch>

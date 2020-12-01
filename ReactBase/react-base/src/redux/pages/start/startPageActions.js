@@ -12,10 +12,13 @@ export const fetchStartPageRequest = () => {
     }
 }
 
-export const fetchStartPageSuccess = startPage => {
+export const fetchStartPageSuccess = (startPage,descriptionBlock,informationBlock) => {
+
     return {
         type: FETCH_STARTPAGE_SUCCESS,
-        payload: startPage
+        payload: startPage,
+        informationBlock: informationBlock,
+        descriptionBlock: descriptionBlock
     }
 }
 
@@ -27,11 +30,11 @@ export const fetchStartPageFailure = error => {
 }
 
 export const fetchStartPage  = () => {
-    return async (dispatch) => {
-        const cache = getCache("StartPage");
-        if(cache === null){
-            dispatch(fetchStartPageRequest)  
-            const startPage = await fetch(`http://localhost:64473//api/episerver/v2.0/content/${5}`,{
+    //const cache = getCache("StartPage");
+    //if(cache === null){
+        return async (dispatch) => {
+            dispatch(fetchStartPageRequest())  
+            const data = await fetch(`http://localhost:64473//api/episerver/v2.0/content/${5}`,{
                 headers: {
                     'Accept-language': ''
                 }
@@ -42,10 +45,50 @@ export const fetchStartPage  = () => {
             .then( json => {
                 return json;
             })
-            saveDataToCache("StartPage",startPage);
-            dispatch(fetchStartPageSuccess(startPage))
+            fetchBlockData(data,dispatch);
+            //console.log(blockData);
+            //saveDataToCache("StartPage",data);
+            //dispatch(fetchStartPageSuccess(data,false))
         }
-        dispatch(fetchStartPageSuccess(cache))  
-    }
-          
+    //}
+    //else{
+        //return (dispatch) => {
+            //dispatch(fetchStartPageSuccess(cache,false))
+       // }
+             
 }
+
+const fetchBlockData = async (json,dispatch)  => {
+    var informationContentArea = json.informationContentArea
+    var descriptionBlock = [];
+    var informationBlock = [];
+    
+
+    informationContentArea.value.forEach(async element => {
+        await fetch(`http://localhost:64473//api/episerver/v2.0/content/${element.contentLink.id}`,{
+        headers: {
+            'Accept-language': ''
+        }
+        })
+        .then( response => {
+            return response.json()
+        })
+        .then( json => {
+            if(json.contentType[1] === "DescriptionBlock"){
+               descriptionBlock.push(json);
+            }
+            if(json.contentType[1] === "InformationBlock"){
+               informationBlock.push(json);
+            }
+            dispatch(fetchStartPageSuccess(json,descriptionBlock,informationBlock))
+        })
+    });
+    
+
+}
+
+
+
+
+
+

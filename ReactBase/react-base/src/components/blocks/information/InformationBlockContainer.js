@@ -1,37 +1,33 @@
-import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
-import { fetchInformationBlock} from '../../../redux'
+import React,{useEffect,useState} from 'react'
 
-function InformationBlockContainer({informationBlockData, fetchInformationBlock}) {
+
+function InformationBlockContainer(props) {
+   const [title, setTitle] = useState("loading")
+   const [mainBody, setMainBody] = useState("loading")
+
+   
     useEffect(() => {
-        fetchInformationBlock()           
-     }, [])
+        console.log(props.data)
+        if(props.data !== false && props.data !== undefined){
+            if(props.data.title.value !== undefined){
+                
+                setTitle(props.data.title.value)
+                setMainBody(props.data.mainBody.value)
+            }
+                       
+        }else {
+            setTitle("loading")
+            setMainBody("mainBody")
+        }
+              
+     }, [title,mainBody,props])
 
-    return informationBlockData.loading ? (
-        <h2>Loading</h2>
-    ) : informationBlockData.error ? (
-       <h2>error</h2> 
-    ) : informationBlockData.informationBlock !== false? (
-        <div className="mt-3">     
-           <h1>{informationBlockData.informationBlock.title.value}</h1>   
-           <div dangerouslySetInnerHTML={{__html: informationBlockData.informationBlock.mainBody.value}}>
-           </div>
-        </div>) : (<h2>loading</h2>)
+    return props.data !== false?(
+        <div className="mt-3 text-left container">    
+           <h1 className="mb-5 mt-5">{title}</h1>   
+           {<div dangerouslySetInnerHTML={{__html: mainBody}}>
+           </div>}
+        </div>): <h1>not working</h1>
 }
 
-const mapStateToProps = state => {    
-    return {
-        informationBlockData: state.informationBlock
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        fetchInformationBlock: () => dispatch(fetchInformationBlock())
-    }
-}
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps)
-    (InformationBlockContainer)
+export default InformationBlockContainer
