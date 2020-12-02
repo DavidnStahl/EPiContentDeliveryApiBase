@@ -60,7 +60,6 @@ export const fetchInstructionPage  = () => {
 const fetchBlockData = async (data,dispatch)  => {
     const blockArray = [];
     const instructionContentArea = [];
-    console.log(data)
     data.instructionContentArea.value.forEach( element => {
        blockArray.push(element.contentLink.id)
     })     

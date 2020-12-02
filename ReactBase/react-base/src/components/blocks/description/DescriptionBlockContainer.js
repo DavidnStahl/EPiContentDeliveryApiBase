@@ -6,7 +6,6 @@ function DescriptionBlockContainer(props) {
    const [mainBody, setMainBody] = useState("loading")
    
     useEffect(() => {
-        console.log(props.data.contentLink.id)
         if(props.data !== false && props.data !== undefined){
             if(props.data.title.value !== undefined){
                 setTitle(props.data.title.value)
@@ -19,7 +18,7 @@ function DescriptionBlockContainer(props) {
      }, [title,mainBody,props])
 
     return props.data !== false?(
-        <div data-epi-block-id={props.data.contentLink.id} className="mt-3 text-left container">    
+        <div className="mt-3 text-left container">    
            <h1 className="mb-5 mt-5">{title}</h1>   
            <div dangerouslySetInnerHTML={{__html: mainBody}}>
            </div>
