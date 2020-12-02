@@ -311,6 +311,7 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ItemGroup>
     <Compile Include="Business\ContentExtensions.cs" />
+    <Compile Include="Business\EditorDescriptors\ContentSelection\ContentSelectionFactory.cs" />
     <Compile Include="Business\EditorDescriptors\StringListEditorDescriptor.cs" />
     <Compile Include="Business\Initialization\BundleConfig.cs" />
     <Compile Include="Business\Initialization\ContentDeliveryApiInitialization.cs" />
@@ -325,8 +326,10 @@
     <Compile Include="Business\ServiceLocatorDependencyResolver.cs" />
     <Compile Include="Business\StructureMapDependencyResolver.cs" />
     <Compile Include="Business\StructureMapDependencyScope.cs" />
-    <Compile Include="Business\UIDescriptors\ContainerPageUIDescriptor.cs" />
-    <Compile Include="Controllers\NavigationController.cs" />
+    <Compile Include="Business\UIDescriptors\EpiserverDefaultContentIcon\EpiserverDefaultContentIcons.cs" />
+    <Compile Include="Business\UIDescriptors\SiteSettingsPageUIDescriptor.cs" />
+    <Compile Include="Controllers\Api\FooterApiController.cs" />
+    <Compile Include="Controllers\Api\NavigationApiController.cs" />
     <Compile Include="Controllers\PageBaseController.cs" />
     <Compile Include="Controllers\StartPageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -335,12 +338,18 @@
     <Compile Include="Global.cs" />
     <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Infrastructure\AutoMapperConfig.cs" />
-    <Compile Include="Models\Dtos\NavigationDto.cs" />
+    <Compile Include="Infrastructure\ServiceConfigurationContextExtension.cs" />
+    <Compile Include="Models\Blocks\DescriptionBlock.cs" />
+    <Compile Include="Models\Blocks\FooterBlock.cs" />
+    <Compile Include="Models\Blocks\HeaderBlock.cs" />
+    <Compile Include="Models\Blocks\InformationBlock.cs" />
+    <Compile Include="Models\Blocks\InstructionBlock.cs" />
+    <Compile Include="Models\Blocks\SiteBlockData.cs" />
+    <Compile Include="Models\Dtos\FooterDto.cs" />
+    <Compile Include="Models\Dtos\PageDto.cs" />
     <Compile Include="Models\Media\GenericMedia.cs" />
     <Compile Include="Models\Media\ImageFile.cs" />
     <Compile Include="Models\Media\VideoFile.cs" />
-    <Compile Include="Models\Pages\ContactPage.cs" />
-    <Compile Include="Models\Pages\ContainerPage.cs" />
     <Compile Include="Models\Pages\InstructionPage.cs" />
     <Compile Include="Models\Pages\SitePageData.cs" />
     <Compile Include="Models\Pages\SiteSettingsPage.cs" />
@@ -351,11 +360,13 @@
     <Compile Include="Models\ViewModels\PageViewModel.cs" />
     <Compile Include="Profiles\DtosMappingProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\FooterApiService.cs" />
+    <Compile Include="Services\IFooterApiService.cs" />
+    <Compile Include="Services\INavigationApiService.cs" />
+    <Compile Include="Services\NavigationApiService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\Blocks\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="ClientResources\Scripts\Editors\StringList.js" />
     <Content Include="favicon.ico" />
@@ -387,11 +398,9 @@
     <Content Include="Views\StartPage\Index.cshtml" />
     <Content Include="Views\Shared\Layouts\_Root.cshtml" />
     <Content Include="Views\_viewstart.cshtml" />
-    <Content Include="Views\Shared\MainMenu.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Image.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EPiServer.Core;
+using EpiserverBase.Models.Blocks;
 using EpiserverBase.Models.Dtos;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,8 @@ namespace EpiserverBase.Profiles
     {
         public DtosMappingProfile()
         {
-            CreateMap<PageData, NavigationDto>();
+            CreateMap<PageData, PageDto>();
+            CreateMap<FooterBlock, FooterDto>();
         }
     }
 }

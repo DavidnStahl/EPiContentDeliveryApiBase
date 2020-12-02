@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EpiserverBase.Business.Initialization;
+using System;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace EpiserverBase
@@ -10,6 +12,8 @@ namespace EpiserverBase
             AreaRegistration.RegisterAllAreas();
 
             //Tip: Want to call the EPiServer API on startup? Add an initialization module instead (Add -> New Item.. -> EPiServer -> Initialization Module)
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+
         }
     }
 }

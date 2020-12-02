@@ -11,6 +11,7 @@ using StructureMap;
 using EpiserverBase.Infrastructure;
 using EpiserverBase.Profiles;
 using System.Web.Http;
+using EpiserverBase.Services;
 
 namespace EpiserverBase.Business.Initialization
 {
@@ -45,6 +46,8 @@ namespace EpiserverBase.Business.Initialization
             {
                 //Register custom implementations that should be used in favour of the default implementations
                 context.Services.AddTransient<IContentRenderer, ErrorHandlingContentRenderer>();
+                context.Services.AddTransient<INavigationApiService, NavigationApiService>();
+                context.Services.AddTransient<IFooterApiService, FooterApiService>();
             };
 
             DependencyResolver.SetResolver(new StructureMapDependencyResolver(container));

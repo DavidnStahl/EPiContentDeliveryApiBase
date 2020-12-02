@@ -3,6 +3,7 @@ using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using Newtonsoft.Json;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace EpiserverBase.Business.Initialization
 {
@@ -10,13 +11,18 @@ namespace EpiserverBase.Business.Initialization
     [ModuleDependency(typeof(FrameworkInitialization))]
     public class WebApiConfig : IInitializableModule
     {
+        public static void Register(HttpConfiguration config)
+        {
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
+        }
 
         public void Initialize(InitializationEngine context)
         {
             GlobalConfiguration.Configure(config =>
             {
-                //config.MapHttpAttributeRoutes();
-                config.EnableCors();
+                var cors = new EnableCorsAttribute("*", "*", "*");
+                config.EnableCors(cors);
 
                 var formatters = GlobalConfiguration.Configuration.Formatters;
                 var jsonFormatter = formatters.JsonFormatter;
