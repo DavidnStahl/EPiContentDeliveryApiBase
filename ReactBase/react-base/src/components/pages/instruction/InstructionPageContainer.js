@@ -5,17 +5,19 @@ import InstructionBlockContainer from '../../blocks/instruction/InstructionBlock
 
 function InstructionPageContainer({instructionPageData, fetchInstructionPage}) {
 
-    useEffect(() => {        
-        fetchInstructionPage()      
+    useEffect(() => {      
+        fetchInstructionPage()     
      }, [])
 
-    return instructionPageData.loading ? (
-        <h2>Loading</h2>
-    ) : instructionPageData.error ? (
-       <h2>error</h2> 
-    ) : instructionPageData.instructionPage !== false ?( <div>
-          <InstructionBlockContainer/>
-         </div> ) : <h2>loading</h2>
+     const instructionContentArea = instructionPageData.loading ? <h2>Loading</h2> : instructionPageData.error ? <h2>error</h2>  :
+      instructionPageData.instructionContentArea !== false && instructionPageData.instructionPage !== false? instructionPageData.instructionContentArea.map(block => {
+        if(block.contentType[1] === "InstructionBlock"){
+            return <InstructionBlockContainer key={block.contentLink.id} data={block} className="mb-5"/>
+        }
+        return null}) : 
+        <h2>loading</h2> 
+
+    return (<div>{instructionContentArea}</div>)
 }
 
 const mapStateToProps = state => {    

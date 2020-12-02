@@ -1,5 +1,10 @@
 import {saveDataToCache,getCache} from '../../../cache/index'
 import {
+    websiteName,
+    getFooter}
+    from '../../../helper/index'
+
+import {
     FETCH_FOOTER_REQUEST,
     FETCH_FOOTER_SUCCESS,
     FETCH_FOOTER_FAILURE}
@@ -30,19 +35,19 @@ export const fetchFooter  = () => {
     if(cache === null){
         return async (dispatch) => {
             dispatch(fetchFooterRequest())  
-            const data = await fetch(`http://localhost:64473/api/footer`,{
-                headers: {
-                    'Accept-language': ''
+            await fetch(websiteName + getFooter,{
+                headers: {'Accept-language': ''}
+            }).then( response => {
+                if(!response.ok){
+                    throw Error(response.statusText)
                 }
-            })
-            .then( response => {
                 return response.json()
-            })
-            .then( json => {
-                return json;
-            })
-            saveDataToCache("Footer",data);
-            dispatch(fetchFooterSuccess(data))
+            }).then( json => {
+                saveDataToCache("Footer",json);
+                dispatch(fetchFooterSuccess(json))
+            }).catch(error => {
+                dispatch(fetchFooterFailure(error))
+            })            
         }
     }
     else{

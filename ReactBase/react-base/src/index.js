@@ -6,8 +6,6 @@ import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux'
 import store from './redux/store'
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
-import $ from 'jquery';
-import Popper from 'popper.js';
 import '../node_modules/bootstrap/dist/js/bootstrap.bundle.min';
 import './App.css'
 import {BrowserRouter} from 'react-router-dom'

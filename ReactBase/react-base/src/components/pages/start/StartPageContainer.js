@@ -6,22 +6,22 @@ import InformationBlockContainer from '../../blocks/information/InformationBlock
 
 function StartPageContainer({startPageData, fetchStartPage}) {
 
-
     useEffect(() => {       
         fetchStartPage()
      }, [])
 
+     const informationContentArea = startPageData.loading ? (<h2>Loading</h2>) : startPageData.error ? (<h2>error</h2> ) :
+     startPageData.informationContentArea !== false? startPageData.informationContentArea.map(block => {
+        if(block.contentType[1] === "InformationBlock"){
+            return <InformationBlockContainer key={block.contentLink.id} data={block} className="mb-5"/>
+        } else if(block.contentType[1] === "DescriptionBlock"){
+            return  <DescriptionBlockContainer key={block.contentLink.id}  data={block} className="mb-5"/>
+        }
+        return null}) : 
+        <h2>loading</h2>
 
-    return startPageData.loading ? (
-        <h2>Loading</h2>
-    ) : startPageData.error ? (
-       <h2>error</h2> 
-    ) : startPageData.informationBlock !== false?( <div>
-          <InformationBlockContainer data={startPageData.informationBlock[0]} className="mb-5"/>
-          <DescriptionBlockContainer key={1}  data={startPageData.descriptionBlock[0]} className="mb-5"/>
-          <DescriptionBlockContainer  key={2} data={startPageData.descriptionBlock[1]} className="mb-5"/>
-          <DescriptionBlockContainer  key={3} data={startPageData.descriptionBlock[2]} className="mb-5"/>
-         </div> ) : <h2>loading</h2>
+    return (<div>{informationContentArea}</div>)
+        
 }
 
 const mapStateToProps = state => {    

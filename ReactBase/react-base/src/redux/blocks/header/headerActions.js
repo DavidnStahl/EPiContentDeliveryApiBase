@@ -1,5 +1,10 @@
 import {saveDataToCache,getCache} from '../../../cache/index'
 import {
+    websiteName,
+    getNavigation}
+    from '../../../helper/index'
+
+import {
     FETCH_HEADER_REQUEST,
     FETCH_HEADER_SUCCESS,
     FETCH_HEADER_FAILURE}
@@ -30,19 +35,19 @@ export const fetchHeader  = () => {
     if(cache === null){
         return async (dispatch) => {
             dispatch(fetchHeaderRequest())  
-            const data = await fetch(`http://localhost:64473/api/navigation`,{
-                headers: {
-                    'Accept-language': ''
+            await fetch(websiteName + getNavigation,{
+                headers: {'Accept-language': ''}
+            }).then( response => {
+                if(!response.ok){
+                    throw Error(response.statusText)
                 }
-            })
-            .then( response => {
                 return response.json()
-            })
-            .then( json => {
-                return json;
-            })
-            saveDataToCache("Header",data);
-            dispatch(fetchHeaderSuccess(data))
+            }).then( json => {
+                saveDataToCache("Header",json);
+                dispatch(fetchHeaderSuccess(json))
+            }).catch(error => {
+                dispatch(fetchHeaderRequest(error))
+            })           
         }
     }
     else{

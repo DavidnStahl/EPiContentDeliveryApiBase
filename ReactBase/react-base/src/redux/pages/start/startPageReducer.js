@@ -7,8 +7,7 @@ import {
 const initialState = {
     loading: false,
     startPage: false,
-    informationBlock: false,
-    descriptionBlock: false,
+    informationContentArea: false,
     error: ''
 }
 
@@ -23,14 +22,14 @@ const reducer = (state = initialState, action) => {
             return {
                 loading: false,
                 startPage: action.payload,
-                informationBlock: action.informationBlock,
-                descriptionBlock: action.descriptionBlock,
+                informationContentArea: action.informationContentArea,
                 error: ''
             }
         case FETCH_STARTPAGE_FAILURE:
             return {
                 loading: false,
                 startPage: initialState,
+                informationContentArea: initialState,
                 error: action.payload
             }
         default: return state

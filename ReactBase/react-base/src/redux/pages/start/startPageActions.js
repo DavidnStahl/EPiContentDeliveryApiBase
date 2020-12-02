@@ -1,10 +1,14 @@
 import {saveDataToCache,getCache} from '../../../cache/index'
 import {
+    websiteName,
+    getcontent}
+    from '../../../helper/index'
+
+import {
     FETCH_STARTPAGE_REQUEST,
     FETCH_STARTPAGE_SUCCESS,
     FETCH_STARTPAGE_FAILURE}
     from './startPageTypes'
-
 
 export const fetchStartPageRequest = () => {
     return {
@@ -12,13 +16,12 @@ export const fetchStartPageRequest = () => {
     }
 }
 
-export const fetchStartPageSuccess = (startPage,descriptionBlock,informationBlock) => {
+export const fetchStartPageSuccess = (startPage,informationContentArea) => {
 
     return {
         type: FETCH_STARTPAGE_SUCCESS,
         payload: startPage,
-        informationBlock: informationBlock,
-        descriptionBlock: descriptionBlock
+        informationContentArea: informationContentArea
     }
 }
 
@@ -30,62 +33,64 @@ export const fetchStartPageFailure = error => {
 }
 
 export const fetchStartPage  = () => {
-    //const cache = getCache("StartPage");
-    //if(cache === null){
+    const startpageCache = getCache("startPage");
+    if(startpageCache === null){
         return async (dispatch) => {
             dispatch(fetchStartPageRequest())  
-            const data = await fetch(`http://localhost:64473//api/episerver/v2.0/content/${5}`,{
+            await fetch(websiteName + getcontent + 5,{
                 headers: {
                     'Accept-language': ''
                 }
-            })
-            .then( response => {
+            }).then( response => {
+                if(!response.ok){
+                    throw Error(response.statusText)
+                }
                 return response.json()
-            })
-            .then( json => {
-                return json;
-            })
-            fetchBlockData(data,dispatch);
-            //console.log(blockData);
-            //saveDataToCache("StartPage",data);
-            //dispatch(fetchStartPageSuccess(data,false))
+            }).then( json => {
+                fetchBlockData(json,dispatch);
+            }).catch(error => {
+                dispatch(fetchStartPageFailure(error))
+            })               
         }
-    //}
-    //else{
-        //return (dispatch) => {
-            //dispatch(fetchStartPageSuccess(cache,false))
-       // }
+    }
+    else{
+        return (dispatch) => {
+            dispatch(fetchStartPageSuccess(startpageCache,getCache("informationContentArea")))
+        }
+   }
              
 }
 
-const fetchBlockData = async (json,dispatch)  => {
-    var informationContentArea = json.informationContentArea
-    var descriptionBlock = [];
-    var informationBlock = [];
-    
-
-    informationContentArea.value.forEach(async element => {
-        await fetch(`http://localhost:64473//api/episerver/v2.0/content/${element.contentLink.id}`,{
+const fetchBlockData = async (data,dispatch)  => {
+    const blockArray = [];
+    const informationContentArea = [];
+    data.informationContentArea.value.forEach( element => {
+       blockArray.push(element.contentLink.id)
+    })     
+    for (var i = 0; i < blockArray.length; i++){
+        await fetch(websiteName + getcontent + blockArray[i],{
         headers: {
-            'Accept-language': ''
-        }
+            'Accept-language': ''}
         })
         .then( response => {
+            if(!response.ok){
+                throw Error(response.statusText)
+            }
             return response.json()
         })
         .then( json => {
-            if(json.contentType[1] === "DescriptionBlock"){
-               descriptionBlock.push(json);
-            }
-            if(json.contentType[1] === "InformationBlock"){
-               informationBlock.push(json);
-            }
-            dispatch(fetchStartPageSuccess(json,descriptionBlock,informationBlock))
+            informationContentArea.push(json)
+            saveDataToCache("startPage",data);
+            saveDataToCache("informationContentArea",informationContentArea)
+            dispatch(fetchStartPageSuccess(data,informationContentArea))             
+        }).catch(error => {
+            dispatch(fetchStartPageFailure(error))
         })
-    });
-    
-
+        
+    }
 }
+
+
 
 
 

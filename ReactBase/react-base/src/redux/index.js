@@ -1,7 +1,4 @@
 export * from './blocks/header/headerActions'
 export * from './blocks/footer/footerActions'
 export * from './pages/start/startPageActions'
-export * from './blocks/description/descriptionBlockActions'
 export * from './pages/instruction/instructionPageActions'
-export * from './blocks/instruction/instructionBlockActions'
-export * from './blocks/information/informationBlockActions'

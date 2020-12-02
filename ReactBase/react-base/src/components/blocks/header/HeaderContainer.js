@@ -8,27 +8,24 @@ function HeaderContainer({headerData, fetchHeader}) {
         fetchHeader()
      }, [])
     
-     const headerItems = headerData.header !== false? headerData.header.map(header => 
+     const headerItems = headerData.loading ? <h2>Loading</h2> : headerData.error ? <h2>error</h2>  : headerData.header !== false?
+     headerData.header.map(header => 
      <HeaderItem key={header.ContentGuid} header={header}/>
-     ) : <h2>loading</h2>
+     ) :
+     <h2>loading</h2>
 
-    return headerData.loading ? (
-        <h2>Loading</h2>
-    ) : headerData.error ? (
-       <h2>error</h2> 
-    ) : (
+    return (
         <nav className="navbar navbar-expand-lg navbar-dark header-navbar container">
             <span></span>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
-
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                 {headerItems}                 
                 </ul>    
             </div>
-      </nav>
+        </nav>
         
     )
 }

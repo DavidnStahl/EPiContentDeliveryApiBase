@@ -6,8 +6,8 @@ function FooterContainer({footerData, fetchFooter}) {
     useEffect(() => {        
         fetchFooter()
      }, [])
-
-
+    
+    
     return footerData.loading ? (
         <h2>Loading</h2>
     ) : footerData.error ? (

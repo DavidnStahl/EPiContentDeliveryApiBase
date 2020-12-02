@@ -3,17 +3,13 @@ import FooterContainer from './components/blocks/footer/FooterContainer'
 import Page from './components/Page'
 
 
-function App() {
-  
+function App() { 
   return (
     <div className="App">
     <HeaderContainer/>
     <Page/>
-    <FooterContainer/>
-    
-</div>
-    
-    
+    <FooterContainer/>    
+</div>    
   );
 }
 

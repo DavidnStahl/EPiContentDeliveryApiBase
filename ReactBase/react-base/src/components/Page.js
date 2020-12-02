@@ -3,7 +3,6 @@ import {Switch, Route} from 'react-router-dom';
 import StartPageContainer from './pages/start/StartPageContainer'
 import InstructionPageContainer from './pages/instruction/InstructionPageContainer'
 
-
 const Page = (() => {
     return (
         <Switch>
