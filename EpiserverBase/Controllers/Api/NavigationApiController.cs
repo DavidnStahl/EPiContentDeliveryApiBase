@@ -28,7 +28,6 @@ namespace EpiserverBase.Controllers.Api
         [Route("navigation")]
         public IHttpActionResult Navigation()
         {
-            var x = 0;
             return Ok(_navigationSerivce.GetAllPages());
         }
     }

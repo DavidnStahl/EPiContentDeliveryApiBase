@@ -10,14 +10,8 @@ using System.Web;
 
 namespace EpiserverBase.Business
 {
-    /// <summary>
-    /// Extension methods for Episerver content.
-    /// </summary>
     public static class ContentExtensions
     {
-        /// <summary>
-		/// Returns the AltText property value of an ImageFile.
-		/// </summary>
 		public static string ImageAltText(this ContentReference contentLink)
         {
             if (contentLink == null)
@@ -36,15 +30,6 @@ namespace EpiserverBase.Business
 
             return imageFile.AltText;
         }
-
-        /// <summary>
-        /// Filters out content that should not be visible to the user.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="contents"></param>
-        /// <param name="requirePageTemplate"></param>
-        /// <param name="requireVisibleInMenu"></param>
-        /// <returns></returns>
         public static IEnumerable<T> FilterForDisplay<T>(
             this IEnumerable<T> contents,
             bool requirePageTemplate = false,
@@ -64,10 +49,6 @@ namespace EpiserverBase.Business
 
             return contents;
         }
-
-        /// <summary>
-        /// Returns whether a page is set to be visible in menus.
-        /// </summary>
         private static bool VisibleInMenu(IContent content)
         {
             if (content is PageData page)

@@ -41,7 +41,6 @@ namespace EpiserverBase.Business.Initialization
                   defaults: new { id = RouteParameter.Optional });
             });
         }
-
         public void Uninitialize(InitializationEngine context)
         {
             //

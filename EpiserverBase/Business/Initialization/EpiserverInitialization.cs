@@ -31,7 +31,6 @@ public class EpiserverInitialization : IInitializableModule
 
     private ApplicationUser CreateUser(UserStore<ApplicationUser> store, string username, string password, string email)
     {
-        //We know that this Password hasher is used as it's configured
         IPasswordHasher hasher = new PasswordHasher();
         string passwordHash = hasher.HashPassword(password);
 
@@ -48,7 +47,6 @@ public class EpiserverInitialization : IInitializableModule
 
         store.CreateAsync(applicationUser).GetAwaiter().GetResult();
 
-        //Get the user associated with our username
         ApplicationUser createdUser = store.FindByNameAsync(username).GetAwaiter().GetResult();
         return createdUser;
     }

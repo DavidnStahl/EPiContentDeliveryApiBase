@@ -17,9 +17,6 @@ namespace EpiserverBase.Helpers
 {
     public static class HtmlHelpers
     {
-        /// <summary>
-        /// An item for use in a MenuList.
-        /// </summary>
         public class MenuItem
         {
             public MenuItem(PageData page)
@@ -33,9 +30,6 @@ namespace EpiserverBase.Helpers
             public Lazy<bool> HasChildren { get; set; }
         }
 
-        /// <summary>
-        /// Returns HTML for each child page for use in a menu.
-        /// </summary>
         public static IHtmlString MenuList(
             this HtmlHelper helper,
             ContentReference rootLink,
@@ -94,9 +88,6 @@ namespace EpiserverBase.Helpers
             return new MvcHtmlString(buffer.ToString());
         }
 
-        /// <summary>
-        /// Creates a new MenuItem from provided PageData.
-        /// </summary>
         private static MenuItem CreateMenuItem(
             PageData page,
             ContentReference currentContentLink,

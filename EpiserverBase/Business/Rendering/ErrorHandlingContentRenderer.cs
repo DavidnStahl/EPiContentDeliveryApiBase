@@ -11,13 +11,6 @@ using EPiServer.Web.Mvc;
 
 namespace EpiserverBase.Business.Rendering
 {
-    /// <summary>
-    /// Wraps an MvcContentRenderer and adds error handling to ensure that blocks and other content
-    /// rendered as parts of pages won't crash the entire page if a non-critical exception occurs while rendering it.
-    /// </summary>
-    /// <remarks>
-    /// Prints an error message for editors so that they can easily report errors to developers.
-    /// </remarks>
     public class ErrorHandlingContentRenderer : IContentRenderer
     {
         private readonly MvcContentRenderer _mvcRenderer;
@@ -26,9 +19,6 @@ namespace EpiserverBase.Business.Rendering
             _mvcRenderer = mvcRenderer;
         }
 
-        /// <summary>
-        /// Renders the contentData using the wrapped renderer and catches common, non-critical exceptions.
-        /// </summary>
         public void Render(HtmlHelper helper, PartialRequest partialRequestHandler, IContentData contentData, TemplateModel templateModel)
         {
             try
@@ -39,7 +29,6 @@ namespace EpiserverBase.Business.Rendering
             {
                 if (HttpContext.Current.IsDebuggingEnabled)
                 {
-                    //If debug="true" we assume a developer is making the request
                     throw;
                 }
                 HandlerError(helper, contentData, ex);

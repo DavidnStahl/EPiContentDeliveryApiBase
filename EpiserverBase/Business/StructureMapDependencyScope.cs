@@ -5,9 +5,7 @@ using System.Web.Http.Dependencies;
 using StructureMap;
 
 namespace EpiserverBase.Business
-{
-    // NOTE: simplified version of 'StructureMapDependencyScope' from 'StructureMap.MVC4' project
-    // https://github.com/webadvanced/Structuremap.MVC4/blob/master/content/DependencyResolution/StructureMapDependencyScope.cs.pp
+{    
     public class StructureMapDependencyScope : IDependencyScope
     {
         protected readonly IContainer Container;

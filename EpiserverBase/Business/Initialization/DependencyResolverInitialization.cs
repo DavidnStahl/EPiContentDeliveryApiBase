@@ -30,7 +30,6 @@ namespace EpiserverBase.Business.Initialization
         }
         public void ConfigureContainer(ServiceConfigurationContext context)
         {
-            //Implementations for custom interfaces can be registered here.
             var container = context.StructureMap();
 
             container.Configure(x =>
@@ -43,8 +42,7 @@ namespace EpiserverBase.Business.Initialization
 
 
             context.ConfigurationComplete += (o, e) =>
-            {
-                //Register custom implementations that should be used in favour of the default implementations
+            {               
                 context.Services.AddTransient<IContentRenderer, ErrorHandlingContentRenderer>();
                 context.Services.AddTransient<INavigationApiService, NavigationApiService>();
                 context.Services.AddTransient<IFooterApiService, FooterApiService>();

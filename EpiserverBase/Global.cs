@@ -7,9 +7,6 @@ namespace EpiserverBase
     {
         public static readonly string LoginPath = "/util/login.aspx";
 
-        /// <summary>
-        /// Group names for content types and properties.
-        /// </summary>
         [GroupDefinitions()]
         public static class GroupNames
         {
@@ -20,9 +17,6 @@ namespace EpiserverBase
             public const string Specialized = "Specialized";
         }
 
-        /// <summary>
-        /// Names for UIHint attributes.
-        /// </summary>
         public static class SiteUIHints
         {
             public const string Strings = "StringList";

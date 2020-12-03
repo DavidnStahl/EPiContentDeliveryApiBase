@@ -3,10 +3,6 @@ using System.Web.Mvc;
 
 namespace EpiserverBase.Business.Rendering
 {
-    /// <summary>
-    /// Extends the Razor view engine to include the folders ~/Views/Shared/Blocks/ and ~/Views/Shared/PagePartials/
-    /// when looking for partial views.
-    /// </summary>
     public class SiteViewEngine : RazorViewEngine
     {
         private static readonly string[] AdditionalPartialViewFormats = new[]

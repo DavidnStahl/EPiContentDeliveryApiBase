@@ -15,10 +15,6 @@ namespace EpiserverBase.Business.Initialization
             }
         }
 
-        /// <summary>
-        /// Register script and style sheet bundles.
-        /// </summary>
-        /// <param name="bundles">Existing bundles.</param>
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/js")
@@ -30,7 +26,6 @@ namespace EpiserverBase.Business.Initialization
                 .Include("~/Static/css/main.css")
             );
         }
-
         public void Uninitialize(InitializationEngine context)
         {
         }

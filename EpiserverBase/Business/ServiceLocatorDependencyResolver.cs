@@ -28,7 +28,6 @@ namespace EpiserverBase.Business
         {
             try
             {
-                // Can't use TryGetInstance here because it won’t create concrete types
                 return _serviceLocator.GetInstance(serviceType);
             }
             catch (ActivationException)
