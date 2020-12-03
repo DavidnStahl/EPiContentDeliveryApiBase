@@ -18,6 +18,10 @@ namespace EpiserverBase.Business.Initialization
             {
                 config.Default().SetMinimumRoles(string.Empty)
                 .SetSiteDefinitionApiEnabled(true);
+
+                config.EnablePreviewFeatures = true;
+
+                
             });
         }
 

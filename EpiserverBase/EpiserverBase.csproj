@@ -369,7 +369,6 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="ClientResources\Scripts\Editors\StringList.js" />
-    <Content Include="favicon.ico" />
     <Content Include="lang\EPiServer.ContentApi.OAuth.UI_en.xml" />
     <Content Include="modules\_protected\EPiServer.ContentDeliveryApi.OAuth\ContentApiUserSettings.ascx" />
     <Content Include="Resources\LanguageFiles\ContentTypeNames.xml" />
